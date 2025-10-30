@@ -1,35 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pomodoro Timer</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌸 Let’s Get This Done!</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="app-container">
+    <h1 class="title">🌸 Let’s Get This Done!</h1>
 
-  <div class="container">
-    <h1>Pomodoro Timer</h1>
-    <div class="timer" id="timer">25:00</div>
+    <div class="character-container">
+      <img id="characterImg" src="https://i.pinimg.com/564x/a9/ea/bd/a9eabd3f4b1c2c7d812b5f1c30ecb6ef.jpg" alt="Character">
+    </div>
+
+    <div class="time-inputs">
+      <label for="minutes">Enter minutes:</label>
+      <input type="number" id="minutes" min="1" max="120" placeholder="25">
+    </div>
+
+    <div class="progress-wrapper">
+      <svg class="progress-ring" width="180" height="180">
+        <circle class="progress-ring__circle" stroke-width="6" fill="transparent" r="80" cx="90" cy="90" />
+      </svg>
+      <div class="timer-display" id="timer">00:00</div>
+    </div>
 
     <div class="controls">
-      <button id="start">Start</button>
-      <button id="stop">Stop</button>
-      <button id="reset">Reset</button>
+      <button id="startBtn">Start</button>
+      <button id="pauseBtn">Pause</button>
+      <button id="resetBtn">Reset</button>
     </div>
 
-    <div class="settings">
-      <label for="work-duration">Focus:</label>
-      <input type="number" id="work-duration" value="25" min="1" max="120">
-      
-      <label for="short-break-duration">Short Break:</label>
-      <input type="number" id="short-break-duration" value="5" min="1" max="15">
-      
-      <label for="long-break-duration">Long Break:</label>
-      <input type="number" id="long-break-duration" value="15" min="1" max="30">
-      
-      <button id="save-settings">Save Settings</button>
+    <div class="character-change">
+      <input type="text" id="imgUrl" placeholder="Paste image link (e.g. Doraemon)">
+      <button id="changeCharacterBtn">Change Character</button>
     </div>
+
+    <footer class="footer">
+      Made with 🍓 in Café Mode ☕ | by <span class="author">Athira Francis</span>
+    </footer>
   </div>
 
   <script src="script.js"></script>
