@@ -6,18 +6,17 @@
   <title>🌸 Let’s Get This Done!</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body class="pink">
   <div class="app-container">
-    <div class="settings-icon" id="settingsIcon">⚙️</div>
+    <div class="settings-icon" id="settingsIcon" title="Settings">⚙️</div>
 
     <h1 class="title">🌸 Let’s Get This Done!</h1>
 
-    <div class="character-container">
-      <img
-        id="characterImg"
-        src="https://i.pinimg.com/564x/a9/ea/bd/a9eabd3f4b1c2c7d812b5f1c30ecb6ef.jpg"
-        alt="Character"
-      />
+    <div class="character-section">
+      <div class="character-label-box" id="characterLabelBox">
+        <p class="character-label">🧸 Add your fav character</p>
+      </div>
+      <img id="characterImg" src="" alt="Character" />
     </div>
 
     <div class="time-inputs" id="timeInputs">
@@ -51,7 +50,7 @@
       <div class="section">
         <label for="imgUrl">🧸 Change Character:</label>
         <input type="text" id="imgUrl" placeholder="Paste image link" />
-        <button id="changeCharacterBtn">Change</button>
+        <button id="changeCharacterBtn">Update</button>
       </div>
 
       <div class="section">
@@ -64,6 +63,9 @@
       </div>
     </div>
   </div>
+
+  <!-- Alarm Sound -->
+  <audio id="alarmSound" src="https://cdn.pixabay.com/download/audio/2023/03/17/audio_f39cc5a5ce.mp3?filename=cute-notification-131660.mp3"></audio>
 
   <script src="script.js"></script>
 </body>

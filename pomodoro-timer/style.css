@@ -12,7 +12,7 @@ body {
   transition: background 0.5s ease;
 }
 
-/* Main container */
+/* Main Container */
 .app-container {
   text-align: center;
   background-color: #fffaf5;
@@ -31,21 +31,38 @@ body {
   margin-bottom: 15px;
 }
 
-/* Character image */
-.character-container img {
-  width: 150px;
-  height: 150px;
+/* Character Section */
+.character-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.character-label-box {
+  background-color: #f2d5bb;
+  border-radius: 10px;
+  padding: 6px 14px;
+  margin-bottom: 10px;
+  border: 2px solid #d7b89c;
+  color: #4b3832;
+  font-weight: 600;
+  transition: opacity 0.5s ease;
+}
+
+.character-section img {
+  width: 140px;
+  height: 140px;
   border-radius: 20px;
   border: 3px solid #d7b89c;
   object-fit: cover;
   background-color: #fff;
-  transition: transform 0.3s ease;
-}
-.character-container img:hover {
-  transform: scale(1.05);
+  display: none;
+  opacity: 0;
+  transition: opacity 0.6s ease;
 }
 
-/* Time input */
+/* Time Input */
 .time-inputs {
   margin-top: 20px;
   font-weight: 500;
@@ -62,7 +79,7 @@ body {
   margin: 0 5px;
 }
 
-/* Timer display */
+/* Timer Display */
 .timer-display {
   font-size: 3em;
   font-weight: 600;
@@ -96,13 +113,17 @@ body {
   font-style: italic;
 }
 
-/* Settings icon */
+/* Settings Icon */
 .settings-icon {
   position: absolute;
   top: 10px;
   right: 15px;
   cursor: pointer;
   font-size: 1.5em;
+  transition: transform 0.3s ease;
+}
+.settings-icon:hover {
+  transform: rotate(20deg);
 }
 
 /* Modal */
@@ -136,16 +157,23 @@ body {
   cursor: pointer;
 }
 
-/* Settings section */
+/* Settings Section */
 .section {
   margin: 20px 0;
+}
+.section label {
+  display: block;
+  font-weight: 600;
+  color: #b97745;
+  margin-bottom: 8px;
 }
 .section input {
   width: 80%;
   padding: 8px;
   border: 2px solid #d7b89c;
   border-radius: 8px;
-  margin-top: 10px;
+  margin-top: 5px;
+  text-align: center;
 }
 
 .section button {
@@ -156,27 +184,10 @@ body {
   padding: 8px 15px;
   margin-top: 10px;
   cursor: pointer;
+  transition: 0.3s;
 }
 .section button:hover {
   background-color: #a8805b;
-}
-
-/* Theme options */
-.theme-options {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
-.theme-btn {
-  border: none;
-  border-radius: 10px;
-  padding: 8px 12px;
-  cursor: pointer;
-  transition: 0.3s;
-  font-size: 0.9em;
-}
-.theme-btn:hover {
-  opacity: 0.8;
 }
 
 /* Themes */
