@@ -1,30 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>🌸 Let’s Get This Done!</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="app-container">
+    <div class="settings-icon" id="settingsIcon">⚙️</div>
+
     <h1 class="title">🌸 Let’s Get This Done!</h1>
 
     <div class="character-container">
-      <img id="characterImg" src="https://i.pinimg.com/564x/a9/ea/bd/a9eabd3f4b1c2c7d812b5f1c30ecb6ef.jpg" alt="Character">
+      <img
+        id="characterImg"
+        src="https://i.pinimg.com/564x/a9/ea/bd/a9eabd3f4b1c2c7d812b5f1c30ecb6ef.jpg"
+        alt="Character"
+      />
     </div>
 
-    <div class="time-inputs">
-      <label for="minutes">Enter minutes:</label>
-      <input type="number" id="minutes" min="1" max="120" placeholder="25">
+    <div class="time-inputs" id="timeInputs">
+      <label>Set Time:</label>
+      <div class="time-fields">
+        <input type="number" id="hours" min="0" max="5" placeholder="0" />h
+        <input type="number" id="minutes" min="0" max="59" placeholder="25" />m
+        <input type="number" id="seconds" min="0" max="59" placeholder="0" />s
+      </div>
     </div>
 
-    <div class="progress-wrapper">
-      <svg class="progress-ring" width="180" height="180">
-        <circle class="progress-ring__circle" stroke-width="6" fill="transparent" r="80" cx="90" cy="90" />
-      </svg>
-      <div class="timer-display" id="timer">00:00</div>
-    </div>
+    <div class="timer-display" id="timer">00:00:00</div>
 
     <div class="controls">
       <button id="startBtn">Start</button>
@@ -32,14 +37,32 @@
       <button id="resetBtn">Reset</button>
     </div>
 
-    <div class="character-change">
-      <input type="text" id="imgUrl" placeholder="Paste image link (e.g. Doraemon)">
-      <button id="changeCharacterBtn">Change Character</button>
-    </div>
-
     <footer class="footer">
-      Made with 🍓 in Café Mode ☕ | by <span class="author">Athira Francis</span>
+      by <span class="author">Athira Francis</span>
     </footer>
+  </div>
+
+  <!-- Settings Modal -->
+  <div class="modal" id="settingsModal">
+    <div class="modal-content">
+      <span class="close" id="closeModal">&times;</span>
+      <h2>⚙️ Settings</h2>
+
+      <div class="section">
+        <label for="imgUrl">🧸 Change Character:</label>
+        <input type="text" id="imgUrl" placeholder="Paste image link" />
+        <button id="changeCharacterBtn">Change</button>
+      </div>
+
+      <div class="section">
+        <label>🎨 Choose Theme:</label>
+        <div class="theme-options">
+          <button class="theme-btn" data-theme="pink">🌸 Berry Bloom</button>
+          <button class="theme-btn" data-theme="brown">☕ Vanilla Latte</button>
+          <button class="theme-btn" data-theme="green">🍃 Matcha Mood</button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script src="script.js"></script>

@@ -1,58 +1,62 @@
 let timer;
 let timeLeft = 0;
-let totalTime = 0;
 let isRunning = false;
 
 const timerDisplay = document.getElementById("timer");
 const startBtn = document.getElementById("startBtn");
 const pauseBtn = document.getElementById("pauseBtn");
 const resetBtn = document.getElementById("resetBtn");
+const hoursInput = document.getElementById("hours");
 const minutesInput = document.getElementById("minutes");
+const secondsInput = document.getElementById("seconds");
+const timeInputs = document.getElementById("timeInputs");
+
 const characterImg = document.getElementById("characterImg");
-const changeCharacterBtn = document.getElementById("changeCharacterBtn");
 const imgUrlInput = document.getElementById("imgUrl");
+const changeCharacterBtn = document.getElementById("changeCharacterBtn");
 
-const circle = document.querySelector(".progress-ring__circle");
-const circumference = 2 * Math.PI * 80; // radius=80
-circle.style.strokeDasharray = circumference;
-circle.style.strokeDashoffset = circumference;
-
-function updateProgress() {
-  const progress = timeLeft / totalTime;
-  const offset = circumference - progress * circumference;
-  circle.style.strokeDashoffset = offset;
-}
+const settingsIcon = document.getElementById("settingsIcon");
+const settingsModal = document.getElementById("settingsModal");
+const closeModal = document.getElementById("closeModal");
+const themeButtons = document.querySelectorAll(".theme-btn");
 
 function updateDisplay() {
-  const minutes = Math.floor(timeLeft / 60);
-  const seconds = timeLeft % 60;
-  timerDisplay.textContent = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+  const hrs = Math.floor(timeLeft / 3600);
+  const mins = Math.floor((timeLeft % 3600) / 60);
+  const secs = timeLeft % 60;
+  timerDisplay.textContent = `${String(hrs).padStart(2, "0")}:${String(
+    mins
+  ).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
 }
 
 function startTimer() {
   if (isRunning) return;
 
   if (timeLeft === 0) {
-    const minutes = parseInt(minutesInput.value);
-    if (isNaN(minutes) || minutes <= 0) {
-      alert("Please enter a valid number of minutes 🍵");
+    const h = parseInt(hoursInput.value) || 0;
+    const m = parseInt(minutesInput.value) || 0;
+    const s = parseInt(secondsInput.value) || 0;
+    timeLeft = h * 3600 + m * 60 + s;
+    if (timeLeft <= 0) {
+      alert("Please enter a valid time 🍵");
       return;
     }
-    timeLeft = minutes * 60;
-    totalTime = timeLeft;
-    updateProgress();
   }
+
+  timeInputs.style.opacity = "0";
+  setTimeout(() => (timeInputs.style.display = "none"), 500);
 
   isRunning = true;
   timer = setInterval(() => {
     if (timeLeft > 0) {
       timeLeft--;
       updateDisplay();
-      updateProgress();
     } else {
       clearInterval(timer);
       isRunning = false;
       alert("⏰ Time’s up! Take a cozy break ☕");
+      timeInputs.style.display = "block";
+      timeInputs.style.opacity = "1";
     }
   }, 1000);
 }
@@ -66,25 +70,40 @@ function resetTimer() {
   clearInterval(timer);
   isRunning = false;
   timeLeft = 0;
-  totalTime = 0;
-  timerDisplay.textContent = "00:00";
-  circle.style.strokeDashoffset = circumference;
+  updateDisplay();
+  timeInputs.style.display = "block";
+  timeInputs.style.opacity = "1";
 }
 
 function changeCharacter() {
   const url = imgUrlInput.value.trim();
   if (url) {
-    characterImg.classList.add("fade");
-    setTimeout(() => {
-      characterImg.src = url;
-      characterImg.classList.remove("fade");
-    }, 400);
+    characterImg.src = url;
     imgUrlInput.value = "";
   } else {
     alert("Paste a valid image URL 🌸");
   }
 }
 
+// Modal controls
+settingsIcon.addEventListener("click", () => {
+  settingsModal.style.display = "block";
+});
+closeModal.addEventListener("click", () => {
+  settingsModal.style.display = "none";
+});
+window.addEventListener("click", (e) => {
+  if (e.target === settingsModal) settingsModal.style.display = "none";
+});
+
+// Theme change
+themeButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    document.body.className = btn.dataset.theme;
+  });
+});
+
+// Timer controls
 startBtn.addEventListener("click", startTimer);
 pauseBtn.addEventListener("click", pauseTimer);
 resetBtn.addEventListener("click", resetTimer);
